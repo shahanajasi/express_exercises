@@ -1,17 +1,16 @@
-let user = "shahana";
+const user = "shahana";
+
 const userRoutes = (req, res, next) => {
-  const name = req.body.user;
+  const { user: name } = req.body;
 
   console.log(name);
 
   if (!name) {
-    res.send("enter a valid name");
-    return;
+    return res.status(400).send("Enter a valid name");
   }
 
   if (name !== user) {
-    res.send("please login");
-    return;
+    return res.status(401).send("Please login");
   }
 
   next();
